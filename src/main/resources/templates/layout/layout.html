@@ -1,0 +1,58 @@
+
+  <header th:fragment="menu">
+
+	<nav class="nav justify-content-end navbar-expand-md navbar-dark fixed-top bg-dark">
+		<a class="navbar-brand " th:href="@{/}">EmpleosApp</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+			aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item" sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')">
+            <a class="nav-link" th:href="@{/vacantes/indexPaginate}">Vacantes</a>
+             </li>
+             <li class="nav-item" sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')">
+					<a class="nav-link" th:href="@{/categorias/indexPaginate}">Categorias</a>
+				</li>
+				 <li class="nav-item" sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
+					<a class="nav-link" th:href="@{/usuarios/index}">Usuarios</a>
+				</li>
+				 <li class="nav-item">
+					<a class="nav-link" th:href="@{/solicitudes/indexPaginate}">Solicitudes</a>
+				</li>
+			</ul>
+
+			<div>
+				<a class="btn btn-primary" th:href="@{/index}">Ingresar</a>&nbsp;
+				<a class="btn btn-primary" th:href="@{/signup}">Registrarse</a>
+			    <span th:if="${session.usuario != null}" class="text-light" th:text="'Bienvenido ' + ${session.usuario.nombre}"></span>&nbsp; 
+				<a class="btn btn-primary" th:href="@{/logout}">Salir</a>
+			</div>
+		</div>
+	</nav>
+</header>
+
+
+
+<footer th:fragment="footer" id="redes" class="container-fluid">
+	<div class="row">
+		<div class="col-sm-6 col-12 container-fluid">
+			<h6 class="text-center ">| Web desarrollada con Springboot | E.N.URBANO |</h6>
+		</div>
+		<div class="col-sm-6 col-12 text-center justify-content-evenly">
+			<a href="https://github.com/eurbano5090" target="_blank" ;="">
+				<i class="fa-brands fa-github  mx-2"></i></a>
+			<a href="https://mobile.twitter.com/roce1698" target="_blank" ;="">
+				<i class="fa-brands fa-twitter mx-2"></i></a>
+			<a href="https://www.linkedin.com/in/enurbanomz" target="_blank" ;="">
+				<i class="fa-brands fa-linkedin  mx-2"></i></a>
+			<a href="https://www.facebook.com/elisa.n.meza" target="_blank" ;="">
+				<i class="fa-brands fa-facebook-square  mx-2"></i></a>
+		</div>
+	</div>
+
+</footer>
+
+</html>

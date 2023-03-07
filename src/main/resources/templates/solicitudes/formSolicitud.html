@@ -1,0 +1,80 @@
+<!doctype html>
+<html xmlns="http://www.w3.org./1999/" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"
+    integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lobster&family=Lobster+Two&family=Open+Sans:wght@300&family=Poppins:wght@200;300;600&family=Roboto:wght@300&display=swap"
+    rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <title>EmpleosApp | Aplicar para una Oferta de Trabajo</title>
+ </head>
+<body>
+
+  <header th:replace="~{layout/layout :: menu}"></header>
+
+    <main class="main">     
+      <hr>
+      <div class="container"> 
+        <div class="row">
+          <div class="col-md-3">     
+		  
+            <img class="rounded mx-auto d-block" th:src="@{/logos/{img}(img= ${vacante.imagen})}" alt="Generic placeholder image" width="220" height="220">            
+          </div>
+          <div class="col-md-9">
+            <div class="card">
+              <h4 class="card-header">Aplicar para la vacante: <strong th:text="${vacante.nombre}"></strong></h4>              
+              <div class="card-body">
+                <h5 class="card-title"><strong>Categoría: </strong><span th:text="${vacante.categoria.nombre}">>Nombre la categoría</span></h5>
+                <h6 class="card-title"><strong>Publicado: </strong> <span th:text=" ${vacante.fecha}">2023-01-01</span></h6>
+                <h6 class="card-title"><strong>Salario Ofrecido: </strong><span th:text="${vacante.salario}">$9000</span></h6>
+               <p th:text=" ${vacante.descripcion}"></p>
+                <hr>
+                 <form th:action="@{/solicitudes/save}" th:object="${solicitud}" method="post" enctype="multipart/form-data">                                                
+                  <div class="row">
+                    <div class="col-md-6"> 
+                      <div class="form-group">
+					<input type="hidden" name="vacante.id"  th:field="*{vacante.id}">
+					
+                        <label for="comentarios">Comentarios</label>
+                   <textarea class="form-control" name="comentarios" id="comentarios" rows="2"></textarea>
+                      </div> 
+                    </div> 
+                    <div class="col-md-6"> 
+                      <div class="form-group">
+                        <label for="archivoCV">Curriculm Vitae</label>
+                        <input type="file" class="form-control-file" name="archivoCV" id="archivoCV" required="true">
+                        <p class="help-block">Solo se permiten archivos Archivos [ pdf,doc,docx ]</p>
+                      </div>
+                    </div>
+                  </div> 
+                  <hr>
+                  <button type="submit" title="Enviar mi Solicitud." class="btn btn-primary">Enviar</button>  
+                </form>
+              </div>
+            </div> 
+          </div>
+        </div>
+      </div> <!-- /container -->
+
+    </main>
+
+  	<footer th:replace="~{layout/layout :: footer}"></footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>     
+  </body>
+</html>
