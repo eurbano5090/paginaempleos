@@ -7,3 +7,4 @@
 <li>:heavy_check_mark:Lo mismo para Usuarios, Categorias y Solicitudes</li>
 <li>:heavy_check_mark:Puedes subir curriculum como usuarios y descargarlos como admin, fue un desafio agregar tinymce para
 que puedas agregar formatos a la solicitud, colores, negritas y listas </li>
+<li>:heavy_check_mark:Security para ingresar  dependiendo de tu rol</li>
